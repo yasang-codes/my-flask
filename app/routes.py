@@ -1,5 +1,6 @@
 from app import app
+from flask import render_template
 
 @app.route('/')
 def login():
-    return "<b>Login Page</b>"
+    return render_template('login.html')

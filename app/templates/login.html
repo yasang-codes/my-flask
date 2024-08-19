@@ -2,11 +2,30 @@
 <html>
 
 <head>
-    <title>Home Page</title>
+    <title>Login Page</title>
 </head>
 
 <body>
-    <h1>Welcome to the Home Page!</h1>
+    <h1>Welcome to the Login Page!</h1>
+    <form action="/login/submit" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Login</button>
+    </form>
 </body>
+<style>
+    body {
+        background-color: lavenderblush;
+    }
+
+    h1 {
+        text-align: center;
+    }
+</style>
+<script>
+
+</script>
 
 </html>

@@ -1,0 +1,19 @@
+body {
+    background-color: #e0ebeb; 
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #24527a;
+    color: #e0ebeb;
+}
+h1 {
+    text-align: center;
+}
+section {
+    margin-top: 60px; 
+    padding: 20px; 
+    text-align: center;  
+}

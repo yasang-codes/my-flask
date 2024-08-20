@@ -8,11 +8,19 @@
 
 <body>
     <header>
-        <h1>Welcome to the Home Page!</h1>
+        <div class="header-div">
+            <h1>Welcome to the Fruit Bowl!</h1>
+            <nav>
+                <form action="/logout" method="post">
+                    <button type="submit">Logout</button>
+                </form>
+            </nav>
+        </div>
     </header>
     <section>
-        <h2>Not logged in?</h2>
-        <p>Click <a href="/login">here</a> to login.</p>
+        <h3>You've logged in successfully!</h3>
+        <p>Enjoy your stay!</p>
+        <img class="home" src="{{ url_for('static', filename='fruit-bowl.jpg') }}" alt="Fruit Bowl" />
     </section>
 </body>
 

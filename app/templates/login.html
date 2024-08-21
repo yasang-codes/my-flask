@@ -70,6 +70,14 @@
             });
         });
 
+        // Mark form as dirty when submit button is clicked
+        submitButton.addEventListener('click', function () {
+            inputs.forEach(input => {
+                input.classList.add('dirty');
+            });
+            checkFormValidity();
+        });
+
         checkFormValidity(); // Initial check in case the form is already dirty and invalid
     });
 </script>

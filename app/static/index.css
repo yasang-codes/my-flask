@@ -1,0 +1,47 @@
+body {
+    background-color: #e0ebeb; 
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #24527a;
+    color: #e0ebeb;
+}
+.header-div {    
+        display: flex;        
+        justify-content: space-between;
+        align-items: center;
+}
+.header-div h1 {
+    margin-left: 20px;
+}
+.header-div button {
+    margin-right: 20px;
+    background-color: #e0ebeb;
+    color: #24527a;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;    
+    text-align: center;
+    padding: 10px;
+    width: 150px;
+    cursor: pointer;
+}
+h1 {
+    text-align: center;
+}
+section {
+    margin-top: 60px;
+    padding: 20px;
+    text-align: center;
+}
+img.home {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}

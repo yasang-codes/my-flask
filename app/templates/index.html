@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
+</head>
+
+<body>
+    <header>
+        <div class="header-div">
+            <h1>Welcome to the Fruit Bowl!</h1>
+            <nav>
+                <form action="/logout" method="post">
+                    <button type="submit">Logout</button>
+                </form>
+            </nav>
+        </div>
+    </header>
+    <section>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% set category, message = messages[0] %}
+        <h3>You've logged in successfully, {{ message }}!</h3>
+        <p>Enjoy your stay!</p>
+        {% endif %}
+        {% endwith %}
+        <img class="home" src="{{ url_for('static', filename='fruit-bowl.jpg') }}" alt="Fruit Bowl" />
+    </section>
+</body>
+
+</html>

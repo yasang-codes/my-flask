@@ -1,0 +1,132 @@
+body {
+    background-color: #e3f6f5;
+}
+
+h1 {
+    text-align: center;
+}
+
+form.login {    
+    padding: 20px;  
+    display: flex;
+    flex-direction: column; 
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: stretch;    
+}
+
+form.login div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+form.login input[type="text"],
+form.login input[type="password"] {    
+    width: 300px; 
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;    
+}
+
+form.login input[type="text"].dirty:invalid,
+form.login input[type="password"].dirty:invalid {
+    border-color: red;
+}
+
+.button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #272343;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 10px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.alert {
+    padding: 20px;
+    background-color: #FFCCCB;
+    color: #B21807;
+    width: 400px;
+    border: #B21807;
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+  }
+  
+  .closebtn {
+    margin-left: 15px;
+    color: #B21807;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+    color: black;
+  }
+  
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+.button span:after {
+    content: '\2192';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+  
+.button:hover span {
+    padding-right: 25px;
+}
+  
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.button:disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: -8px; 
+    margin-bottom: 8px;   
+    max-width: 300px; 
+    word-wrap: break-word; 
+    display: none; 
+}
+
+input.dirty:invalid + .error-message {
+    display: block; 
+}
+
+div.alerts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+

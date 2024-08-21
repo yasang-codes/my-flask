@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}" />
+</head>
+
+<body>
+    <h1>Login</h1>
+    <div class="alerts">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+    <form class="login" action="/login/submit" method="post">
+        <div>
+            <label for="username">Username</label>
+            <input type="text" name="username" placeholder="Username" required>
+            <span class="error-message">Username is required</span>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" id="password" type="password" name="password"
+                placeholder="Password" required>
+            <span class="error-message">Password must contain 6 or more characters that have least one number, and one
+                uppercase and lowercase letter</span>
+        </div>
+        <button class="button" type="submit" style="vertical-align:middle"><span>Login </span></button>
+    </form>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form.login');
+        const inputs = form.querySelectorAll('input[type="text"], input[type="password"]');
+        const submitButton = form.querySelector('button[type="submit"]');
+
+        function checkFormValidity() {
+            let isFormDirty = false;
+            let isFormValid = true;
+
+            inputs.forEach(input => {
+                if (input.classList.contains('dirty')) {
+                    isFormDirty = true;
+                }
+                if (!input.checkValidity()) {
+                    isFormValid = false;
+                }
+            });
+
+            if (isFormDirty && !isFormValid) {
+                submitButton.disabled = true;
+            } else {
+                submitButton.disabled = false;
+            }
+        }
+
+        inputs.forEach(input => {
+            input.addEventListener('input', function () {
+                input.classList.add('dirty');
+                checkFormValidity();
+            });
+        });
+
+        // Mark form as dirty when submit button is clicked
+        submitButton.addEventListener('click', function () {
+            inputs.forEach(input => {
+                input.classList.add('dirty');
+            });
+            checkFormValidity();
+        });
+
+        checkFormValidity(); // Initial check in case the form is already dirty and invalid
+    });
+</script>
+
+</html>

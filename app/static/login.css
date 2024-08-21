@@ -51,6 +51,32 @@ form.login input[type="password"].dirty:invalid {
     cursor: pointer;
     margin: 5px;
 }
+
+.alert {
+    padding: 20px;
+    background-color: #FFCCCB;
+    color: #B21807;
+    width: 400px;
+    border: #B21807;
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+  }
+  
+  .closebtn {
+    margin-left: 15px;
+    color: #B21807;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+    color: black;
+  }
   
 .button span {
     cursor: pointer;
@@ -94,5 +120,13 @@ form.login input[type="password"].dirty:invalid {
 
 input.dirty:invalid + .error-message {
     display: block; 
+}
+
+div.alerts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 

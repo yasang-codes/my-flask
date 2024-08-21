@@ -22,9 +22,13 @@ def login_submit():
 
     if (username == 'admin' and password == 'Password123'):
         session['username'] = username
+        flash(username)
         return redirect('/')
+    elif (username == 'admin'):
+        flash('Username and password do not match. Please try again.')
+        return redirect('/login')
     else:
-        flash('Invalid username or password')
+        flash('Username does not exist. Please sign up and try again.')
         return redirect('/login')
     
 @app.route('/logout', methods=['POST'])

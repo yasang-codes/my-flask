@@ -18,8 +18,14 @@
         </div>
     </header>
     <section>
-        <h3>You've logged in successfully!</h3>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <h3>You've logged in successfully, {{ message }}!</h3>
         <p>Enjoy your stay!</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
         <img class="home" src="{{ url_for('static', filename='fruit-bowl.jpg') }}" alt="Fruit Bowl" />
     </section>
 </body>

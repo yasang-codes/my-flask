@@ -20,10 +20,9 @@
     <section>
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-        {% for category, message in messages %}
+        {% set category, message = messages[0] %}
         <h3>You've logged in successfully, {{ message }}!</h3>
         <p>Enjoy your stay!</p>
-        {% endfor %}
         {% endif %}
         {% endwith %}
         <img class="home" src="{{ url_for('static', filename='fruit-bowl.jpg') }}" alt="Fruit Bowl" />

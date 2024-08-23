@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 flask = "*"
 pytest-playwright = "*"
+flask-login = "*"
 
 [dev-packages]
 

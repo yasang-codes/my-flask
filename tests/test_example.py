@@ -1,5 +1,5 @@
 import re
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page, expect, Browser
 
 '''
 1. Test to check if the index page redirects to login page when not logged in.
@@ -19,6 +19,7 @@ def test_login_page(page: Page):
     expect(page.get_by_role("textbox", name="username")).to_be_visible()
     expect(page.get_by_role("textbox", name="password")).to_be_visible()
     expect(page.get_by_role("button", name="Login")).to_be_visible()
+    expect(page.get_by_role("checkbox", name="remember")).to_be_visible()
 
 '''
 1. Test to check if the index page redirects to login page when not logged in.
@@ -142,8 +143,73 @@ def test_login_success(page: Page):
     expect(page).to_have_url("http://127.0.0.1:5000/login")
     expect(page).to_have_title("Login Page")
 
+'''
+1. Test to check if the index page redirects to login page when not logged in.
+2. Test if the login page has the correct title and url.
+3. Fill in the details and check the remember me checkbox.
+4. Test to check if login is successful.
+5. Test if the index page has the correct title and url.
+5. Test if the browser has stored the remember me cookie.
+'''
 
+def test_login_remember_me(browser: Browser):
+    context = browser.new_context()
 
+    page = context.new_page()
+    # Test to check if trying to submit an incorrect username will fail.
+    page.goto("http://127.0.0.1:5000/")
+
+    # Expect it to redirect to the login page.
+    expect(page).to_have_url("http://127.0.0.1:5000/login")
+    expect(page).to_have_title("Login Page")
+
+    # Fill in the form.
+    page.get_by_role("textbox", name="username").fill("admin")
+    page.get_by_role("textbox", name="password").fill("Password123")
+    page.get_by_role("checkbox", name="remember").check()
+
+    # Click on the submit button.
+    page.get_by_role("button", name="Login").click()
+
+    # Expect it to redirect to the index page.
+    expect(page).to_have_url("http://127.0.0.1:5000/")
+    expect(page).to_have_title("Home Page")
+
+    # Expect the page to have a flash message welcoming the user by their username.
+    expect(page.locator("body > section > h3")).to_have_text(re.compile(r"admin"))
+
+    # Expect the page to have the remember me cookie.
+    cookies = context.cookies()
+    remember_token_present = any(cookie['name'] == 'remember_token' for cookie in cookies)
+    assert remember_token_present, "remember_token cookie is not present"
+
+    # Click on the logout button.
+    page.get_by_role("button", name="Logout").click()
+
+    # Expect it to redirect to the login page.
+    expect(page).to_have_url("http://127.0.0.1:5000/login")
+    expect(page).to_have_title("Login Page")
+
+    # Relogin without checking the remember me checkbox.
+    page.get_by_role("textbox", name="username").fill("admin")
+    page.get_by_role("textbox", name="password").fill("Password123")
+    
+    # Click on the submit button.
+    page.get_by_role("button", name="Login").click()
+
+    # Expect it to redirect to the index page.
+    expect(page).to_have_url("http://127.0.0.1:5000/")
+    expect(page).to_have_title("Home Page")
+
+    # Expect the page to have a flash message welcoming the user by their username.
+    expect(page.locator("body > section > h3")).to_have_text(re.compile(r"admin"))
+
+    # Expect the page to not have the remember me cookie.
+    cookies = context.cookies()
+    remember_token_present = any(cookie['name'] == 'remember_token' for cookie in cookies)
+    assert not remember_token_present, "remember_token cookie is present"                             
+
+    context.close()
 
    
 
